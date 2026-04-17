@@ -4,14 +4,13 @@ This document provides a more detailed description of the physical model and the
 
 ## Hybrid quantum system
 
-We consider a hybrid quantum system consisting of a two-level system and a nonlinear crystal inside an optical cavity. The cavity supports two modes, namely a signal mode and an idler mode. The idler mode is resonant with the atomic transition, while the signal mode is detuned.
+We consider a hybrid quantum system consisting of a two-level system and a nonlinear crystal inside an optical cavity. The cavity supports two modes, namely a signal mode and an idler mode. The idler mode is resonant with the transition frequency of the two-level system, while the signal mode is detuned.
+Properly engineered pump pulses enable the preparation of high-fidelity Fock states in the signal mode.
 
-The dynamics are governed by two main interaction mechanisms:
+The dynamics are governed by two interaction mechanisms:
 
-- atom-field coupling in the idler mode, which induces Rabi oscillations through a Jaynes-Cummings-type interaction,
-- pump-driven nonlinear interaction in the crystal, which generates two-mode squeezing between the signal and idler modes.
-
-With a suitable sequence of pump pulses, the system can be driven toward high-fidelity Fock-state preparation in the signal mode.
+- atom-field coupling in the idler mode, which induces Rabi oscillations through the Jaynes-Cummings interaction,
+- pump-driven nonlinear interaction in the crystal, which generates two-mode squeezing of the signal and idler modes.
 
 ## Effective evolution for three pulses
 
@@ -19,34 +18,33 @@ The effective unitary dynamics are approximated by
 
 $$
 \hat{U} \approx
-\hat{S}(r_3,\phi_3)\hat{T}(t_2)\hat{S}(r_2,\phi_2)\hat{T}(t_1)\hat{S}(r_1,\phi_1).
+\hat{S}(r_3,\phi_3)\hat{T}(t_2)\hat{S}(r_2,\phi_2)\hat{T}(t_1)\hat{S}(r_1,\phi_1)\.
 $$
 
-Here, the parameters $r_j$, $\phi_j$, and $t_j$ denote the pulse gains, phases, and intermediate interaction times.
+Here, the parameters $r_j$, $\phi_j$, and $t_j$ denote the pulse gains, phases, and intermediate interaction times.<br>
+The operators $\hat{S}, \hat{T}$ describe the two interactions mechanisms.
 
 ## Two-mode squeezing operator
 
-The nonlinear pump interaction is described by
+The nonlinear interaction modeling a single pump pulse is described by the two-mode squeezing operator
 
 $$
-\hat{S}(r_j,\phi_j)
-=
-\exp\left[-i r_j \left(e^{i\phi_j}\hat{a}^\dagger_i \hat{a}^\dagger_s + e^{-i\phi_j}\hat{a}_i \hat{a}_s \right)\right].
+\hat{S}(r_j,\phi_j)=\exp\left[-i r_j \left(e^{i\phi_j}\hat{a}^\dagger_i \hat{a}^\dagger_s + e^{-i\phi_j}\hat{a}_i \hat{a}_s \right)\right]\.
 $$
 
-This operator captures the action of the pump pulses on the nonlinear crystal. The symbols $\hat{a}_i$ and $\hat{a}_s$ denote the annihilation operators of the idler and signal modes.
+
+This operator depends on the pump pulse parameters $r_j, \phi_j$ and the symbols $\hat{a}_i$ and $\hat{a}_s$ denote the annihilation operators of the idler and signal modes.
 
 ## Atom-field interaction
 
-Between nonlinear pulses, the atom-field interaction is modeled by
+Between pulses, the atom-field interaction is modeled by
 
 $$
-\hat{T}(t_j)
-=
-\exp\left[t_j \frac{\Omega}{2}(\hat{a}_i \hat{\sigma}^\dagger - \hat{a}_i^\dagger \hat{\sigma})\right],
+\hat{T}(t_j) = \exp\left[t_j \frac{\Omega}{2}(\hat{a}_i \hat{\sigma}^\dagger - \hat{a}_i^\dagger \hat{\sigma})\right]\,
 $$
 
-where $\Omega$ is the single-photon Rabi frequency and $\hat{\sigma} = |g\rangle\langle e|$ is the atomic lowering operator.
+and depends on the time-delay parameter $t_j$. $\Omega$ is the single-photon Rabi frequency and $\hat{\sigma} = |g\rangle\langle e|$ is the atomic lowering operator.
+
 
 ## Fidelity definition
 
@@ -59,15 +57,15 @@ F(N) = \mathrm{Tr}\left[
 \right],
 $$
 
-with
+which is obtained by taking the partial trace of the final state density operator over the idler and atomic degrees of freedom. The final state density operator is given by
 
 $$
-\rho_{\mathrm{final}} = \hat{U}\,|0,0,g\rangle\langle 0,0,g|\,\hat{U}^\dagger.
+\rho_{\mathrm{final}} = \hat{U}|0,0,g\rangle\langle 0,0,g|\hat{U}^\dagger.
 $$
 
 ## Surrogate-model approach
 
-To avoid evaluating the full quantum dynamics at every optimization step, this project introduces a surrogate model based on a dense feed-forward neural network. The network is trained in a supervised-learning setting to approximate the mapping
+This project introduces a surrogate model based on a dense feed-forward neural network. The network is trained in a supervised-learning setting to approximate the mapping
 
 $$
 f^{(N)}_{\mathrm{NN}}(\vec{\theta}; \omega) \approx F(N;\vec{\theta}),
@@ -89,7 +87,7 @@ The present repository focuses on a deliberately simple but informative setting:
 
 - target Fock state $N=1$,
 - a three-pulse protocol,
-- fixed nonlinear phases, which reduces the surrogate input to five effective parameters.
+- fixed phases of the pulses, which reduces the surrogate input to five effective parameters.
 
 This reduced setting is still challenging enough to test whether the neural network learns the fidelity landscape induced by the full dynamics.
 
