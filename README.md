@@ -2,6 +2,7 @@
 
 This repository contains a side project that emerged from my master's thesis work on the optimization of state preparation in hybrid quantum systems.
 Depending on external control pulse parameters, the dynamics of a hybrid quantum system can be steered such that the resulting final state has high fidelity with respect to a target Fock state. 
+
 A neural network is trained on precomputed data to rerpesent the fidelity and then used as a surrogate model to optimize the control parameters of a quantum dynamical system.
 
 For a more detailed description of the physics and the surrogate-model setup, see [docs/physics_and_approach.md](docs/physics_and_approach.md).
