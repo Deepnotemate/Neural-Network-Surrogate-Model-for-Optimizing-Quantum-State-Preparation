@@ -1,0 +1,8 @@
+numpy==1.23.5
+matplotlib==3.10.8
+scikit-learn==1.7.2
+tensorflow==2.10.0
+keras==2.10.0
+tqdm==4.67.3
+ipykernel==7.2.0
+pytest==9.0.3

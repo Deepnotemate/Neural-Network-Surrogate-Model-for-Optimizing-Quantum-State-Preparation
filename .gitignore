@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Generated training and optimization outputs
+artifacts/metrics/
+artifacts/models/
+surrogate_model.h5
+
+*.pyc
+*.pyo
+*.pyd
+*.log
