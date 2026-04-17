@@ -1,22 +1,32 @@
 # Optimization of Fock-State Preparation in a Hybrid Quantum System using a Neural-Network Surrogate Model
 
-This repository contains a side project that emerged from my master's thesis work on the optimization of state preparation in hybrid quantum systems.
-Depending on external control pulse parameters, the dynamics of a hybrid quantum system can be steered such that the resulting final state has high fidelity with respect to a target Fock state. 
+This repository showcases a research-oriented machine-learning project at the intersection of quantum dynamics, numerical simulation, and gradient-based optimization.
 
-A neural network is trained on precomputed data to rerpesent the fidelity and then used as a surrogate model to optimize the control parameters of a quantum dynamical system.
+The central idea is to replace repeated expensive exact simulations with a neural-network surrogate that approximates the fidelity landscape and enables much faster search for high-quality control pulses.
+
+## Highlights
+
+- **Problem:** exact quantum-dynamics evaluations are computationally expensive during parameter optimization.
+- **Method:** a dense neural network is trained on precomputed simulation data and then used as a differentiable surrogate for pulse optimization.
+- **Outcome:** the stored results show an average exact-surrogate validation difference of about $0.0066$ and optimized exact fidelities up to about $0.94$.
+- **Stack:** Python, NumPy, TensorFlow/Keras, Matplotlib, scikit-learn, and pytest.
+
+## Why this matters
+
+For larger pulse sequences and more complex control problems, brute-force or repeated exact simulation quickly becomes the bottleneck. This project demonstrates how surrogate modeling can preserve useful physical accuracy while making optimization much more practical.
 
 For a more detailed description of the physics and the surrogate-model setup, see [docs/physics_and_approach.md](docs/physics_and_approach.md).
 
 
 
 
-## Project idea
+## Workflow overview
 
 The workflow is intentionally compact and research-oriented:
 
-- a dense neural network is trained to approximate the target-state fidelity,
-- the trained surrogate is then used as a fast optimizer for the control parameters
-- the optimal parameters found via the surrogate model are evaluated using a benchmark model that computes the exact dynamics
+1. Train a dense neural network to approximate the target-state fidelity.
+2. Use the trained surrogate as a fast differentiable optimizer for the control parameters.
+3. Validate the optimized parameters with the exact benchmark dynamics.
 
 
 ## Key findings
@@ -65,7 +75,7 @@ It:
 - [data/random_init_params.npy](data/random_init_params.npy): random initializations for optimization runs
 - trained model artifacts are created during training and reused for surrogate-based optimization
 
-## Setup
+## Quickstart
 
 Install the required packages with:
 
@@ -73,12 +83,13 @@ Install the required packages with:
 pip install -r requirements.txt
 ```
 
-## Typical workflow
+Typical workflow:
 
 1. Generate or provide the dynamics dataset.
 2. Train the surrogate model with [Training.py](Training.py).
 3. Run surrogate-based optimization with [Surrogate_Model_GD.py](Surrogate_Model_GD.py).
 4. Compare neural-network predictions against the exact benchmark.
+5. Run the test suite with `pytest -q`.
 
 ## Example results
 
@@ -104,4 +115,4 @@ A natural next step would be to extend the framework to more demanding pulse str
 
 ## Notes
 
-The code is intentionally kept close to the original research workflow. The focus of the repository is on clarity, physical interpretability, and demonstrating the combined use of simulation and machine learning in a compact project.
+The code is intentionally kept close to the original research workflow. The focus of the repository is on clarity, physical interpretability, and demonstrating how simulation and machine learning can be combined in a compact but technically meaningful project.
