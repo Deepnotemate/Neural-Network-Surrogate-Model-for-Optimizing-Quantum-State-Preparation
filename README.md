@@ -21,9 +21,9 @@ The workflow is intentionally compact and research-oriented:
 
 ## Key findings
 
-The current experiments show that the chosen architecture learns the fidelity landscape induced by the exact dynamics very well. The stored validation metrics indicate an average exact-surrogate difference of about $0.008$.
+The current experiments show that the chosen architecture learns the fidelity landscape induced by the exact dynamics very well. The stored validation metrics indicate an average exact-surrogate difference of about $0.0066$.
 
-An especially encouraging result is that the training pipeline removes samples above a fidelity threshold of $0.9$, yet the surrogate-guided gradient optimization still finds solutions with exact fidelities of about $0.97$. This suggests that surrogate-based methods may remain useful for more complicated pulse sequences and higher-dimensional optimization problems.
+In the present training pipeline, samples above a fidelity threshold of $0.7$ are excluded so that the model focuses on the harder low- and medium-fidelity region. Despite that restriction, the stored example optimization results still reach exact fidelities of about $0.94$, which is encouraging for more complex pulse sequences.
 
 ## Repository structure
 
@@ -40,11 +40,11 @@ It:
 This script trains the surrogate neural network.
 
 It:
-- loads the precomputed dynamics data,
-- extracts the relevant input features,
-- computes labels based on the target-state fidelity,
+- loads the compact fidelity dataset,
+- randomly samples up to $200000$ training examples,
+- removes the fixed phase entries to obtain the five effective NN inputs,
 - trains a dense neural network to approximate the physical benchmark,
-- saves the trained surrogate model.
+- validates the predictions against the exact model and saves the trained surrogate.
 
 ### [Surrogate_Model_GD.py](Surrogate_Model_GD.py)
 This script performs optimization using the trained surrogate model.
@@ -58,8 +58,9 @@ It:
 
 ## Data and artifacts
 
-- [Three_Pulse_Dynamics_Data.npy](Three_Pulse_Dynamics_Data.npy): dataset generated from the physical benchmark
-- [random_init_params.npy](random_init_params.npy): random initializations for optimization runs
+- [data/Three_Pulse_Dynamics_Data.npy](data/Three_Pulse_Dynamics_Data.npy): full benchmark dataset containing pulse parameters and state-vector output
+- [data/Three_Pulse_Fidelity_Data.npy](data/Three_Pulse_Fidelity_Data.npy): compact dataset containing pulse parameters and one precomputed fidelity per sample
+- [data/random_init_params.npy](data/random_init_params.npy): random initializations for optimization runs
 - trained model artifacts are created during training and reused for surrogate-based optimization
 
 ## Setup

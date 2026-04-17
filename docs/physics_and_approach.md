@@ -91,9 +91,9 @@ The present repository focuses on a deliberately simple but informative setting:
 
 This reduced setting is still challenging enough to test whether the neural network learns the fidelity landscape induced by the full dynamics.
 
-The current results show that the chosen architecture learns the benchmark fidelities very accurately. According to the stored training metrics, the average validation difference is about $0.008$. In addition, the training pipeline explicitly filters out samples above a fidelity threshold of $0.9$, so the surrogate is trained mainly on the more difficult low- to medium-fidelity region.
+The current results show that the chosen architecture learns the benchmark fidelities very accurately. According to the stored training metrics, the average validation difference is about $0.0066$. In addition, the training pipeline explicitly filters out samples above a fidelity threshold of $0.7$, so the surrogate is trained mainly on the more difficult low- to medium-fidelity region.
 
-Even under that restriction, surrogate-guided gradient optimization can still discover parameter sets with exact fidelities close to unity. In the current experiments, the best exact fidelity found after optimization is approximately $0.972$.
+Even under that restriction, surrogate-guided gradient optimization can still discover parameter sets with high exact fidelities. In the current experiments, the best exact fidelity found after optimization is approximately $0.94$.
 
 ## Outlook
 

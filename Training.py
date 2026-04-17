@@ -29,7 +29,7 @@ num_params = 5  # 3 pulses
 N = 1
 num_samples = 200000
 batch_size = 64
-epochs = 3#180
+epochs = 200
 validation_eval_samples = 250
 
 data_dir = Path("data")
@@ -126,7 +126,7 @@ def main():
     model = build_model()
 
     # Load the compact dataset: 8 pulse parameters + 1 precomputed fidelity value.
-    loaded_data = np.load(data_dir / "Three_Pulse_Dynamics_Data.npy", mmap_mode="r")
+    loaded_data = np.load(data_dir / "Three_Pulse_Fidelity_Data.npy", mmap_mode="r")
 
     # Random subsampling
     rng = np.random.default_rng(42)
