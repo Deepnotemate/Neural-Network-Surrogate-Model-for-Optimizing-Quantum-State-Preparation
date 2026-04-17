@@ -25,6 +25,8 @@ The current experiments show that the chosen architecture learns the fidelity la
 
 In the present training pipeline, samples above a fidelity threshold of $0.7$ are excluded so that the model focuses on the harder low- and medium-fidelity region. Despite that restriction, the stored example optimization results still reach exact fidelities of about $0.94$, which is encouraging for more complex pulse sequences.
 
+This also suggests that even though inference becomes worse when high-fidelity solutions are omitted from the training data, the surrogate approach can identify highest-fidelity pulse configurations.
+
 ## Repository structure
 
 ### [Dynamics_with_unitary_operators.py](Dynamics_with_unitary_operators.py)
