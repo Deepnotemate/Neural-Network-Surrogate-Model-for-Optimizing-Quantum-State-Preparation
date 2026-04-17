@@ -1,14 +1,14 @@
 # Optimization of Fock-State Preparation in a Hybrid Quantum System using a Neural-Network Surrogate Model
 
-This repository contains a side project that emerged from my master's thesis work on the optimization of state preparation in hybrid quantum systems. It combines an exact simulation of unitary quantum dynamics with a neural-network surrogate model that accelerates the search for high-fidelity control parameters.
+This repository contains a side project that emerged from my master's thesis work on the optimization of state preparation in hybrid quantum systems. A neural network is trained on precomputed data and then used as a surrogate model to optimize the control parameters of a quantum dynamical system.
 
 ## Project idea
 
 The workflow is intentionally compact and research-oriented:
 
-- an exact benchmark model computes the dynamics of a three-pulse protocol,
 - a dense neural network is trained to approximate the target-state fidelity,
-- the trained surrogate is then used as a fast optimizer for the control parameters.
+- the trained surrogate is then used as a fast optimizer for the control parameters
+- the optimal parameters found via the surrogate model are evaluated using a benchmark model that computes the exact dynamics
 
 This repository currently focuses on the case $N=1$ with three pulses and fixed nonlinear phases. Because the phases are fixed, the surrogate only needs five effective input parameters instead of the full pulse vector.
 
