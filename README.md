@@ -10,8 +10,6 @@ The workflow is intentionally compact and research-oriented:
 - the trained surrogate is then used as a fast optimizer for the control parameters
 - the optimal parameters found via the surrogate model are evaluated using a benchmark model that computes the exact dynamics
 
-This repository currently focuses on the case $N=1$ with three pulses and fixed nonlinear phases. Because the phases are fixed, the surrogate only needs five effective input parameters instead of the full pulse vector.
-
 For a more detailed description of the physics and the surrogate-model setup, see [docs/physics_and_approach.md](docs/physics_and_approach.md).
 
 ## Key findings
