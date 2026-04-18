@@ -2,7 +2,7 @@
 
 This repository showcases a research-oriented machine-learning project at the intersection of quantum dynamics, numerical simulation, and gradient-based optimization.
 
-The central idea is to replace repeated expensive exact simulations with a neural-network surrogate that approximates the fidelity landscape and enables much faster search for high-quality control pulses.
+The central idea is to replace repeated expensive simulations with a neural-network surrogate model. This model approximates the figure of merit and allows much faster optimization by applying gradient descent directly to the surrogate.
 
 ## Highlights
 
